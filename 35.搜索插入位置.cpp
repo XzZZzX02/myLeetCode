@@ -8,33 +8,13 @@
 class Solution {
 public:
   int searchInsert(vector<int> &nums, int target) {
-    int left = 0, right = nums.size() - 1;
-    int mid = 0;
-    int res = -1;
-    while (left <= right) {
-      if (left == right) {
-        if (nums[left] >= target) {
-          res = left;
-          break;
-        } else {
-          res = left + 1;
-          break;
-        }
-      }
-      mid = (left + right) / 2;
-      if (nums[mid] == target) {
-        res = mid;
-        break;
-      } else if (nums[mid] < target) {
-        left = mid + 1;
-      } else {
-        right = mid - 1;
+    int n = nums.size();
+    for (int i = 0; i < n; ++i) {
+      if (nums[i] >= target) {
+        return i;
       }
     }
-    if (res == -1) {
-      res = mid;
-    }
-    return res;
+    return n;
   }
 };
 // @lc code=end
