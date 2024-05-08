@@ -17,22 +17,12 @@ public:
         if (num == 49) return true;
         if (num == 64) return true;
         if (num == 81) return true;
-        int left = 1;
-        int right = num - 1;
-        long mid = 0;
-        long square = 0;
-        while (left <= right) {
-            mid = left + ((right - left) >> 1);
-            square = mid * mid;
-            if (square < num) {
-                left = mid + 1;
-            } else if (square == num) {
-                return true;
-            } else {
-                right = mid - 1;
-            }
+        int odd = 1;
+        while (num > 0) {
+            num -= odd;
+            odd += 2;
         }
-        return false;
+        return num == 0;
     }
 };
 // @lc code=end
