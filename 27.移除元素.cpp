@@ -3,7 +3,7 @@
  *
  * [27] 移除元素
  */
-
+#include "leetcode.h"
 // @lc code=start
 class Solution {
 public:
@@ -19,7 +19,6 @@ public:
 };
 // @lc code=end
 #ifndef __ONLINE_JUDGE__
-#include "leetcode.h"
 int main() {
     Solution s;
     vector<int> nums = {3, 2, 2, 3};
