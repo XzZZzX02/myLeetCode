@@ -3,16 +3,29 @@
  *
  * [977] 有序数组的平方
  */
+#include <cstdio>
+#include <vector>
+
 #include "leetcode.h"
 // @lc code=start
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
-        for (int i = 0; i < nums.size(); i++) {
-            nums[i] = nums[i] * nums[i];
+        int n = nums.size();
+        int i = 0;
+        int j = n - 1;
+        int res_i = n - 1;
+        vector<int> res(n);
+        while (i <= j) {
+            if (nums[i] * nums[i] < nums[j] * nums[j]) {
+                res[res_i--] = nums[j] * nums[j];
+                j--;
+            } else {
+                res[res_i--] = nums[i] * nums[i];
+                i++;
+            }
         }
-        sort(nums.begin(), nums.end());
-        return nums;
+        return res;
     }
 };
 // @lc code=end
