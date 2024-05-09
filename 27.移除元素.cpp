@@ -5,26 +5,21 @@
  */
 
 // @lc code=start
-#include "leetcode.h"
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
-        int count = 0, n = nums.size();
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == val) {
-                for (int j = i; j < nums.size() - 1; j++) {
-                    nums[j] = nums[j + 1];
-                }
-                count++;
-                i--;
-                n--;
+        int slow = 0;
+        for (int fast = 0; fast < nums.size(); fast++) {
+            if (nums[fast] != val) {
+                nums[slow++] = nums[fast];
             }
         }
-        return nums.size() - count;
+        return slow;
     }
 };
 // @lc code=end
 #ifndef __ONLINE_JUDGE__
+#include "leetcode.h"
 int main() {
     Solution s;
     vector<int> nums = {3, 2, 2, 3};
