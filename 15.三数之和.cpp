@@ -3,8 +3,6 @@
  *
  * [15] 三数之和
  */
-#include <unordered_set>
-
 #include "leetcode.h"
 // @lc code=start
 class Solution {
