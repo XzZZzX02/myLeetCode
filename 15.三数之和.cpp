@@ -12,25 +12,27 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> res;
         sort(nums.begin(), nums.end());
-        for (int i = 0; i < nums.size(); i++) {
-            if (nums[i] > 0) {
-                break;
-            }
+        for (int i = 0; i < nums.size() - 2; i++) {
+            if (nums[i] > 0) return res;
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            unordered_set<int> set;
-            for (int j = i + 1; j < nums.size(); j++) {
-                if (j > i + 2 && nums[j] == nums[j - 1] &&
-                    nums[j] == nums[j - 2]) {
-                    continue;
-                }
-                int c = 0 - nums[i] - nums[j];
-                if (set.find(c) != set.end()) {
-                    res.push_back({nums[i], nums[j], c});
-                    set.erase(c);
+            int left = i + 1, right = nums.size() - 1;
+            int sum = 0;
+            while (left < right) {
+                sum = nums[i] + nums[left] + nums[right];
+                if (sum == 0) {
+                    res.emplace_back(
+                        vector({nums[i], nums[left], nums[right]}));
+                    while (left < right && nums[right] == nums[right - 1])
+                        right--;
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    left++;
+                    right--;
+                } else if (sum < 0) {
+                    left++;
                 } else {
-                    set.insert(nums[j]);
+                    right--;
                 }
             }
         }
