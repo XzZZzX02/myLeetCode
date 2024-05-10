@@ -12,6 +12,7 @@ public:
     vector<int> findAnagrams(string s, string p) {
         vector<int> res;
         int n = s.length(), m = p.length();
+        int num = 0;
         if (n < m) {
             return res;
         }
@@ -19,18 +20,14 @@ public:
         for (char c : p) {
             count[c - 'a']++;
         }
-        int count_p[26];
-        for (int i = 0; i < n - m + 1; i++) {
-            bool flag = true;
-            memcpy(count_p, count, sizeof(count_p));
-            for (int j = i; j < i + m; j++) {
-                count_p[s[j] - 'a']--;
-                if (count_p[s[j] - 'a'] < 0) {
-                    flag = false;
-                    break;
-                }
+        int i = 0;
+        for (int j = 0; j < n; j++) {
+            count[s[j] - 'a']--;
+            while (count[s[j] - 'a'] < 0) {
+                count[s[i] - 'a']++;
+                i++;
             }
-            if (flag) {
+            if (j - i + 1 == m) {
                 res.emplace_back(i);
             }
         }
@@ -38,3 +35,15 @@ public:
     }
 };
 // @lc code=end
+#ifndef __ONLINE_JUDGE__
+int main() {
+    Solution s;
+    string s1 = "aa";
+    string p1 = "bb";
+    vector<int> res = s.findAnagrams(s1, p1);
+    for (int i : res) {
+        cout << i << " ";
+    }
+    return 0;
+}
+#endif
