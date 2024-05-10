@@ -3,7 +3,7 @@
  *
  * [26] 删除有序数组中的重复项
  */
-
+#include "leetcode.h"
 // @lc code=start
 class Solution {
 public:
