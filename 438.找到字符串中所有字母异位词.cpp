@@ -22,6 +22,7 @@ public:
         int count_p[26];
         for (int i = 0; i < n - m + 1; i++) {
             bool flag = true;
+            memcpy(count_p, count, sizeof(count_p));
             for (int j = i; j < i + m; j++) {
                 count_p[s[j] - 'a']--;
                 if (count_p[s[j] - 'a'] < 0) {
