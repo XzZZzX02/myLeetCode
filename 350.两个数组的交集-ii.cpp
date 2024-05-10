@@ -3,36 +3,26 @@
  *
  * [350] 两个数组的交集 II
  */
-#include <algorithm>
-#include <unordered_map>
-
 #include "leetcode.h"
 // @lc code=start
 class Solution {
 public:
-    void insertRes(vector<int>& res, unordered_map<int, int> map1,
-                   unordered_map<int, int> map2) {
-        for (auto it1 = map1.begin(); it1 != map1.end(); it1++) {
-            auto it2 = map2.find(it1->first);
-            if (it2 != map2.end() && it1->second > 0 && it2->second > 0) {
-                int count = min(it1->second, it2->second);
-                res.insert(res.end(), count, it1->first);
-            }
-        }
-    }
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        unordered_map<int, int> map1, map2;
         vector<int> res;
-        for (int num : nums1) {
-            map1[num]++;
-        }
-        for (int num : nums2) {
-            map2[num]++;
-        }
-        if (map1.size() > map2.size()) {
-            insertRes(res, map1, map2);
-        } else {
-            insertRes(res, map2, map1);
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        int i = 0, j = 0;
+        int n = nums1.size(), m = nums2.size();
+        while (i < n && j < m) {
+            if (nums1[i] == nums2[j]) {
+                res.emplace_back(nums1[i]);
+                i++;
+                j++;
+            } else if (nums1[i] < nums2[j]) {
+                i++;
+            } else {
+                j++;
+            }
         }
         return res;
     }
