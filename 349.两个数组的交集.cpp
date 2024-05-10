@@ -11,13 +11,13 @@ class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
         unordered_set<int> set(nums1.begin(), nums1.end());
-        vector<int> res;
-        for (int num : set) {
-            if (nums2.end() != find(nums2.begin(), nums2.end(), num)) {
-                res.push_back(num);
+        unordered_set<int> res_set;
+        for (int num : nums2) {
+            if (set.count(num) > 0) {
+                res_set.insert(num);
             }
         }
-        return res;
+        return vector<int>(res_set.begin(), res_set.end());
     }
 };
 // @lc code=end
