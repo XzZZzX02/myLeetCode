@@ -7,7 +7,8 @@
 void getNext(std::string pattern, std::vector<int>& next);
 int kmp(std::string goal, std::string pattern);
 
-inline void getNext(std::string pattern, std::vector<int>& next) {
+template <typename T>
+inline void getNext(T pattern, std::vector<int>& next) {
     int j = 0;
     next[0] = j;
     for (int i = 1; i < pattern.size(); i++) {
@@ -21,7 +22,8 @@ inline void getNext(std::string pattern, std::vector<int>& next) {
     }
 }
 
-inline int kmp(std::string goal, std::string pattern) {
+template <typename T>
+inline int kmp(T goal, T pattern) {
     std::vector<int> next(pattern.size(), 0);
     getNext(pattern, next);
     int i = 0, j = 0;
