@@ -3,8 +3,6 @@
  *
  * [559] N 叉树的最大深度
  */
-#include <queue>
-
 #include "leetcode.h"
 class Node {
 public:
