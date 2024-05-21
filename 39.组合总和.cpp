@@ -16,7 +16,7 @@ public:
             }
             return;
         }
-        for (int i = start; i < n; i++) {
+        for (int i = start; i < n && sum + candidates[i] <= target; i++) {
             nums.push_back(candidates[i]);
             backtracing(res, nums, candidates, sum + candidates[i], target, n,
                         i);
@@ -26,6 +26,7 @@ public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>> res;
         vector<int> nums;
+        sort(candidates.begin(), candidates.end());
         backtracing(res, nums, candidates, 0, target, candidates.size(), 0);
         return res;
     }
