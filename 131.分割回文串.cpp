@@ -6,50 +6,48 @@
 #include "leetcode.h"
 // @lc code=start
 class Solution {
-    vector<vector<string>> res1;
+    vector<vector<string>> res;
     vector<string> subs;
+    vector<vector<bool>> isPalindrome;
 
 public:
-    bool isPalindromeNumber(string const& s) {
-        for (int i = 0; i < s.size() / 2; i++) {
-            if (s[i] != s[s.size() - i - 1]) {
-                return false;
-            }
-        }
-        return true;
-    }
-    void isAllPalindrome(vector<vector<string>>& res,
-                         vector<vector<string>>& res1) {
-        for (auto v : res1) {
-            bool flag = true;
-            for (auto s : v) {
-                if (!isPalindromeNumber(s)) {
-                    flag = false;
+    void isPalindromeNumber(string const& s) {
+        int n = s.size();
+        isPalindrome.resize(s.size(), vector<bool>(n, false));
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i; j < n; j++) {
+                if (i == j) {
+                    isPalindrome[i][j] = true;
+                } else if (j - i == 1) {
+                    isPalindrome[i][j] = s[i] == s[j];
+                } else {
+                    isPalindrome[i][j] =
+                        s[i] == s[j] && isPalindrome[i + 1][j - 1];
                 }
-            }
-            if (flag) {
-                res.push_back(v);
             }
         }
     }
     void backtracing(const string& s, int start) {
         if (start >= s.size()) {
-            res1.push_back(subs);
+            res.push_back(subs);
             return;
         }
         for (int i = start; i < s.size(); i++) {
-            string sub = s.substr(start, i - start + 1);
-            subs.push_back(sub);
+            if (isPalindrome[start][i]) {
+                string sub = s.substr(start, i - start + 1);
+                subs.push_back(sub);
+            } else {
+                continue;
+            }
             backtracing(s, i + 1);
             subs.pop_back();
         }
     }
     vector<vector<string>> partition(string s) {
-        res1.clear();
+        res.clear();
         subs.clear();
-        vector<vector<string>> res;
+        isPalindromeNumber(s);
         backtracing(s, 0);
-        isAllPalindrome(res, res1);
         return res;
     }
 };
