@@ -27,7 +27,7 @@ public:
             }
         }
     }
-    void backtracing(const string& s, int start) {
+    void backtracking(const string& s, int start) {
         if (start >= s.size()) {
             res.push_back(subs);
             return;
@@ -39,7 +39,7 @@ public:
             } else {
                 continue;
             }
-            backtracing(s, i + 1);
+            backtracking(s, i + 1);
             subs.pop_back();
         }
     }
@@ -47,7 +47,7 @@ public:
         res.clear();
         subs.clear();
         isPalindromeNumber(s);
-        backtracing(s, 0);
+        backtracking(s, 0);
         return res;
     }
 };
