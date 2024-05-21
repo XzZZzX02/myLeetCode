@@ -7,8 +7,8 @@
 // @lc code=start
 class Solution {
 public:
-    void backtracing(vector<int>& num, vector<vector<int>>& res, int start,
-                     int k, int nu, int sum, int target) {
+    void backtracking(vector<int>& num, vector<vector<int>>& res, int start,
+                      int k, int nu, int sum, int target) {
         int n = num.size();
 
         if (n == k) {
@@ -20,14 +20,14 @@ public:
 
         for (int i = start; i <= nu - k + n + 1; i++) {
             num.push_back(i);
-            backtracing(num, res, i + 1, k, nu, sum + i, target);
+            backtracking(num, res, i + 1, k, nu, sum + i, target);
             num.pop_back();
         }
     }
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>> res;
         vector<int> num;
-        backtracing(num, res, 1, k, 9, 0, n);
+        backtracking(num, res, 1, k, 9, 0, n);
         return res;
     }
 };
