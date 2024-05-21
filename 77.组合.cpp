@@ -7,8 +7,8 @@
 // @lc code=start
 class Solution {
 public:
-    void backtracing(vector<int>& num, vector<vector<int>>& re, int k,
-                     int start, int max) {
+    void backtracking(vector<int>& num, vector<vector<int>>& re, int k,
+                      int start, int max) {
         int n = num.size();
         int u = 0;
         if (n == k) {
@@ -17,14 +17,14 @@ public:
         }
         for (int i = start; i <= max - k + n + 1; i++) {
             num.push_back(i);
-            backtracing(num, re, k, i + 1, max);
+            backtracking(num, re, k, i + 1, max);
             num.pop_back();
         }
     }
     vector<vector<int>> combine(int n, int k) {
         vector<int> nums;
         vector<vector<int>> res;
-        backtracing(nums, res, k, 1, n);
+        backtracking(nums, res, k, 1, n);
         return res;
     }
 };
