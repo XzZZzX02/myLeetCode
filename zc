@@ -1,0 +1,40 @@
+#!/bin/zsh
+
+# 默认的仓库目录路径
+default_repo_dir="/home/zzx/code/LeetCode"
+
+# 如果提供了参数，则使用提供的目录；否则使用默认的仓库目录
+repo_dir=${1:-$default_repo_dir}
+
+# 检查指定的目录是否存在
+if [[ ! -d "$repo_dir" ]]; then
+    echo "The specified directory does not exist: $repo_dir"
+    exit 1
+fi
+
+# 切换到仓库目录
+cd "$repo_dir"
+
+# 检查是否成功切换到目录
+if [[ $? -ne 0 ]]; then
+    echo "Failed to enter directory: $repo_dir"
+    exit 1
+fi
+
+# 初始化计数器
+count=0
+
+# 执行git log并过滤包含"0ms"的提交，然后统计数量并打印
+git log --pretty=format:"%s" --grep="0ms" | while read -r line; do
+    echo "$line"
+    ((count++))
+done
+
+# 打印找到的提交数量
+echo "Total commits containing '0ms': $count"
+
+# 检查git命令是否执行成功
+if [[ $? -ne 0 ]]; then
+    echo "Failed to execute git log in $repo_dir"
+    exit 1
+fi
