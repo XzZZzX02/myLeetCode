@@ -2,21 +2,39 @@
 
 # 默认目录
 default_directory="/home/zzx/code/LeetCode"
+today_only=false
 
-# 检查是否有参数传递给脚本
-if [[ $# -eq 1 ]]; then
-    # 如果有参数，使用传递的参数作为目录
-    directory=$1
-else
-    # 如果没有参数，使用默认目录
-    directory=$default_directory
-fi
+# 检查参数
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -t|--today)
+            today_only=true
+            shift
+            ;;
+        *)
+            directory=$1
+            shift
+            ;;
+    esac
+done
+
+# 如果没有传递目录参数，则使用默认目录
+directory=${directory:-$default_directory}
 
 # 检查目录是否存在
 if [[ -d $directory ]]; then
-    # 使用find命令统计.cpp文件数量
-    cpp_count=$(find $directory -type f -name "*.cpp" | wc -l)
-    echo "The total number of questions completed is: $cpp_count"
+    if $today_only; then
+        # 获取当天日期
+        current_date=$(date "+%Y-%m-%d")
+        # 使用find命令统计当天的.cpp文件数量
+        cpp_count=$(find $directory -type f -name "*.cpp" -newermt "$current_date" ! -newermt "$current_date + 1 day" | wc -l)
+        echo "The total number of questions completed today is: $cpp_count"
+        exit 0
+    else
+        # 使用find命令统计.cpp文件数量
+        cpp_count=$(find $directory -type f -name "*.cpp" | wc -l)
+        echo "The total number of questions completed is: $cpp_count"
+    fi
 else
     echo "The directory '$directory' does not exist."
     exit 1
