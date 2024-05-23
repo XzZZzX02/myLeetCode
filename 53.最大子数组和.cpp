@@ -3,19 +3,19 @@
  *
  * [53] 最大子数组和
  */
+#include <algorithm>
+#include <climits>
+
 #include "leetcode.h"
 // @lc code=start
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int dp = nums[0], res = dp;
-        for (int i = 1; i < nums.size(); i++) {
-            if (dp < 0) {
-                dp = nums[i];
-            } else {
-                dp += nums[i];
-            }
-            res = max(res, dp);
+        int pre_sum = 0, min_pre_sum = 0, res = INT_MIN;
+        for (int i = 0; i < nums.size(); i++) {
+            pre_sum += nums[i];
+            res = max(res, pre_sum - min_pre_sum);
+            min_pre_sum = min(min_pre_sum, pre_sum);
         }
         return res;
     }
