@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+# Default directory
+DIR="/home/zzx/code/LeetCode"
+
+# If an argument is given, use it as the directory
+if [ $# -eq 1 ]; then
+  DIR=$1
+fi
+
+# Check if the directory exists
+if [ ! -d "$DIR" ]; then
+  echo "Directory does not exist: $DIR"
+  exit 1
+fi
+
+# Print the directory being processed
+echo "Counting lines of .cpp files in directory: $DIR"
+
+# Count lines of all .cpp files in the directory
+TOTAL_LINES=$(find "$DIR" -name '*.cpp' -print0 | xargs -0 wc -l | tail -n 1)
+
+# Print the result
+echo "Total lines in .cpp files: $TOTAL_LINES"
