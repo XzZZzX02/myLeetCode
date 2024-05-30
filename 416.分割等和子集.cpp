@@ -7,27 +7,22 @@
 // @lc code=start
 class Solution {
 public:
-    bool backtracking(vector<int>& nums, int target, int sum, int start) {
-        int n = nums.size();
-        if (sum == target) {
-            return true;
-        }
-        for (int i = start; i < n; i++) {
-            sum += nums[i];
-            if (backtracking(nums, target, sum, i + 1)) return true;
-            sum -= nums[i];
-        }
-        return false;
-    }
     bool canPartition(vector<int>& nums) {
-        int sum_n = 0;
+        int sum = 0, target = 0;
         for (int n : nums) {
-            sum_n += n;
+            sum += n;
         }
-        if (sum_n % 2) {
+        if (sum % 2) {
             return false;
         }
-        return backtracking(nums, sum_n / 2, 0, 0);
+        target = sum / 2;
+        vector<int> dp(10001, 0);
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = target; j >= nums[i]; j--) {
+                dp[j] = max(dp[j], dp[j - nums[i]] + nums[i]);
+            }
+        }
+        return dp[target] == target;
     }
 };
 // @lc code=end
