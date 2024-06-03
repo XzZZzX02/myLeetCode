@@ -8,14 +8,28 @@
 class Solution {
 public:
     int numSquares(int n) {
-        vector<int> dp(n + 1, INT_MAX);
-        dp[0] = 0;
-        for (int i = 0; i <= n; i++) {
-            for (int j = 1; j * j <= i; j++) {
-                dp[i] = min(dp[i], dp[i - j * j] + 1);
+        auto isSquare = [](int x) {
+            int s = (int)sqrt(x);
+            return s * s == x;
+        };
+        auto check = [](int x) {
+            while (!(x % 4)) {
+                x /= 4;
+            }
+            return x % 8 == 7;
+        };
+        if (isSquare(n)) {
+            return 1;
+        }
+        for (int i = 1; i * i <= n; i++) {
+            if (isSquare(n - i * i)) {
+                return 2;
             }
         }
-        return dp[n] == INT_MAX ? -1 : dp[n];
+        if (check(n)) {
+            return 4;
+        }
+        return 3;
     }
 };
 // @lc code=end
