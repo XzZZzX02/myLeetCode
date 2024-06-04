@@ -19,12 +19,16 @@
  */
 class Solution {
 public:
+    unordered_map<TreeNode*, int> used;
     int rob(TreeNode* root) {
         if (!root) {
             return 0;
         }
         if (!root->left && !root->right) {
             return root->val;
+        }
+        if (used[root]) {
+            return used[root];
         }
         int val1 = root->val;
         if (root->left) {
@@ -34,6 +38,7 @@ public:
             val1 += rob(root->right->left) + rob(root->right->right);
         }
         int val2 = rob(root->left) + rob(root->right);
+        used[root] = max(val1, val2);
         return max(val1, val2);
     }
 };
