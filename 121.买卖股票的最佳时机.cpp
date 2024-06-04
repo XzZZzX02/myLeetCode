@@ -10,12 +10,22 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int res = 0, low = INT_MAX;
-        for (int i = 0; i < prices.size(); i++) {
-            low = min(low, prices[i]);
-            res = max(res, prices[i] - low);
+        vector<int> dp(prices.size(), 0);
+        int min_ = prices[0];
+        for (int i = 1; i < prices.size(); i++) {
+            min_ = min(min_, prices[i]);
+            dp[i] = max(dp[i - 1], prices[i] - min_);
         }
-        return res;
+        return dp[prices.size() - 1];
     }
 };
 // @lc code=end
+#ifndef __ONLINE_JUDGE__
+int main() {
+    Solution s;
+    vector<int> prices = {1, 2};
+    int res = s.maxProfit(prices);
+    cout << res << endl;
+    return 0;
+}
+#endif
