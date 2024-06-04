@@ -19,27 +19,17 @@
  */
 class Solution {
 public:
-    unordered_map<TreeNode*, int> used;
+    pair<int, int> rob_(TreeNode* cur) {
+        if (!cur) {
+            return {0, 0};
+        }
+        auto [lf, ls] = rob_(cur->left);
+        auto [rf, rs] = rob_(cur->right);
+        return {max(lf, ls) + max(rf, rs), cur->val + lf + rf};
+    }
     int rob(TreeNode* root) {
-        if (!root) {
-            return 0;
-        }
-        if (!root->left && !root->right) {
-            return root->val;
-        }
-        if (used[root]) {
-            return used[root];
-        }
-        int val1 = root->val;
-        if (root->left) {
-            val1 += rob(root->left->left) + rob(root->left->right);
-        }
-        if (root->right) {
-            val1 += rob(root->right->left) + rob(root->right->right);
-        }
-        int val2 = rob(root->left) + rob(root->right);
-        used[root] = max(val1, val2);
-        return max(val1, val2);
+        auto res = rob_(root);
+        return max(res.first, res.second);
     }
 };
 // @lc code=end
