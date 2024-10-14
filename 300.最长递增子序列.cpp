@@ -11,19 +11,16 @@ public:
         if (nums.size() <= 1) {
             return nums.size();
         }
-        int res = 0;
-        vector<int> dp(nums.size() + 1, 1);
-        for (int i = 1; i < nums.size(); i++) {
-            for (int j = 0; j < i; j++) {
-                if (nums[j] < nums[i]) {
-                    dp[i] = max(dp[i], dp[j] + 1);
-                }
-            }
-            if (dp[i] > res) {
-                res = dp[i];
+        vector<int> dp;
+        for (int num : nums) {
+            auto it = lower_bound(dp.begin(), dp.end(), num);
+            if (it == dp.end()) {
+                dp.push_back(num);
+            } else {
+                *it = num;
             }
         }
-        return res;
+        return dp.size();
     }
 };
 // @lc code=end
