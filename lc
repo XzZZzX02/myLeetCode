@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Default directory
-DIR="/home/zzx/code/LeetCode"
+DIR="/workspaces/myLeetCode"
 
 # If an argument is given, use it as the directory
 if [ $# -eq 1 ]; then

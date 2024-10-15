@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # 默认目录
-default_directory="/home/zzx/code/LeetCode"
+default_directory="/workspaces/myLeetCode"
 today_only=false
 
 # 检查参数
