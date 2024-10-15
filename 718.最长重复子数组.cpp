@@ -7,18 +7,61 @@
 // @lc code=start
 class Solution {
 public:
-    int findLength(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> dp(vector<int>(nums2.size() + 1, 0));
-        int result = 0;
-        for (int i = 1; i <= nums1.size(); i++) {
-            for (int j = nums2.size(); j > 0; j--) {
-                if (nums1[i - 1] == nums2[j - 1]) {
-                    dp[j] = dp[j - 1] + 1;
-                } else dp[j] = 0;
-                if (dp[j] > result) result = dp[j];
+    const int mod = 1000000009;
+    const int base = 113;
+    
+    // 使用快速幂计算 x^n % mod 的值
+    long long qPow(long long x, long long n) {
+        long long ret = 1;
+        while (n) {
+            if (n & 1) {
+                ret = ret * x % mod;
+            }
+            x = x * x % mod;
+            n >>= 1;
+        }
+        return ret;
+    }
+
+    bool check(vector<int>& A, vector<int>& B, int len) {
+        long long hashA = 0;
+        for (int i = 0; i < len; i++) {
+            hashA = (hashA * base + A[i]) % mod;
+        }
+        unordered_set<long long> bucketA;
+        bucketA.insert(hashA);
+        long long mult = qPow(base, len - 1);
+        for (int i = len; i < A.size(); i++) {
+            hashA = ((hashA - A[i - len] * mult % mod + mod) % mod * base + A[i]) % mod;
+            bucketA.insert(hashA);
+        }
+        long long hashB = 0;
+        for (int i = 0; i < len; i++) {
+            hashB = (hashB * base + B[i]) % mod;
+        }
+        if (bucketA.count(hashB)) {
+            return true;
+        }
+        for (int i = len; i < B.size(); i++) {
+            hashB = ((hashB - B[i - len] * mult % mod + mod) % mod * base + B[i]) % mod;
+            if (bucketA.count(hashB)) {
+                return true;
             }
         }
-        return result;
+        return false;
+    }
+
+    int findLength(vector<int>& A, vector<int>& B) {
+        int left = 1, right = min(A.size(), B.size()) + 1;
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            if (check(A, B, mid)) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left - 1;
     }
 };
 // @lc code=end
