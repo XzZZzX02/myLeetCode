@@ -9,12 +9,11 @@ class Solution {
 public:
     double minimumAverage(vector<int>& nums) {
         sort(nums.begin(), nums.end());
-        int n = nums.size();
-        float res = INT_MAX;
+        int n = nums.size(), res = INT_MAX;
         for (int i = 0; i < n / 2; i++) {
-            res = min(res, (float)(nums[i] + nums[n - i - 1]) / 2);
+            res = min(res, nums[i] + nums[n - i - 1]);
         }
-        return res;
+        return res / 2.0;
     }
 };
 // @lc code=end
