@@ -8,20 +8,21 @@
 class Solution {
 public:
     int numDistinct(string s, string t) {
-        vector<vector<uint64_t>> dp(s.size() + 1, vector<uint64_t>(t.size() + 1, 0));
-        for (int i = 0; i < s.size(); i++) {
-            dp[i][0] = 1;
+        int n = s.size();
+        int m = t.size();
+        vector<vector<unsigned long long>> dp(n,vector<unsigned long long>(m,0));
+        dp[0][0]=(s[0]==t[0])?1:0;
+        for(int i = 1; i < n; ++i){
+            dp[i][0] = dp[i-1][0];
+            if(s[i]==t[0])dp[i][0]++;
         }
-        for (int i = 1; i <= s.size(); i++) {
-            for (long long j = 1; j <= t.size(); j++) {
-                if (s[i - 1] == t[j - 1]) {
-                    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
-                } else {
-                    dp[i][j] = dp[i - 1][j];
-                }
+        for(int i = 1; i < n; ++i){
+            for(int j = 1; j < m && j <= i; ++j){
+                if(s[i]==t[j])dp[i][j] = dp[i-1][j]+dp[i-1][j-1];
+                else dp[i][j] = dp[i-1][j];
             }
         }
-        return dp[s.size()][t.size()];
+        return dp[n-1][m-1];
     }
 };
 // @lc code=end
