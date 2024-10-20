@@ -8,27 +8,20 @@
 class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
-        if (nums.empty()) {
-            return {};
-        }
-        vector<int> res(nums.size(), -1);
-        stack<int> s;
-        s.push(0);
         int n = nums.size();
-        nums.resize(2 * n - 1);
-        for (int i = 0; i < n - 1; i++) {
-            nums[i + n] = nums[i];
-        }
-        for (int i = 1; i < nums.size(); i++) {
-            while (!s.empty() && nums[i] > nums[s.top()]) {
-                if (s.top() < n) {
-                    res[s.top()] = nums[i];
-                }
-                s.pop();
+        vector<int> ans(n,-1);
+        stack<int> st;
+        for (int i = 2 * n - 1;i >= 0; i--){
+            int x = nums[i % n];
+            while (!st.empty() && x >= st.top()){
+                st.pop();
             }
-            s.push(i);
+            if (i < n && !st.empty()){
+                ans[i] = st.top();
+            }
+            st.push(x);
         }
-        return res;
+        return ans;
     }
 };
 // @lc code=end
