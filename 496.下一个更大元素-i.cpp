@@ -12,19 +12,21 @@ public:
             return {};
         }
         vector<int> res(nums1.size(), -1);
+        stack<int> s;
+        unordered_map<int, int> umap;
         for (int i = 0; i < nums1.size(); i++) {
-            bool find = false, done = false;
-            for (int j = 0; j < nums2.size(); j++) {
-                if (nums2[j] == nums1[i]) {
-                    find = true;
+            umap[nums1[i]] = i;
+        }
+        s.push(0);
+        for (int i = 1; i < nums2.size(); i++) {
+            while (!s.empty() && nums2[i] > nums2[s.top()]) {
+                if (umap.count(nums2[s.top()]) > 0) {
+                    int index = umap[nums2[s.top()]];
+                    res[index] = nums2[i];
                 }
-                if (find && !done) {
-                    if (nums1[i] < nums2[j]) {
-                        res[i] = nums2[j];
-                        done = true;
-                    }
-                }
+                s.pop();
             }
+            s.push(i);
         }
         return res;
     }
