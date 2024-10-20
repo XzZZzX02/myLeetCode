@@ -12,22 +12,19 @@ public:
             return 0;
         }
         int res = 0;
-        vector<int> maxLeft(height.size(), 0);
-        vector<int> maxRight(height.size(), 0);
-        int n = height.size();
-        maxLeft[0] = height[0];
-        maxRight[n - 1] = height[n - 1];
-        for (int i = 1; i < n; i++) {
-            maxLeft[i] = max(height[i], maxLeft[i - 1]);
-        }
-        for (int i = n - 2; i >= 0; i--) {
-            maxRight[i] = max(height[i], maxRight[i + 1]);
-        }
-        for (int i = 1; i < n - 1; i++) {
-            int count = min(maxLeft[i], maxRight[i]) - height[i];
-            if (count > 0) {
-                res += count;
+        stack<int> s;
+        s.push(0);
+        for (int i = 1; i < height.size(); i++) {
+            while (!s.empty() && height[i] > height[s.top()]) {
+                int index = s.top();
+                s.pop();
+                if (!s.empty()) {
+                    int h = min(height[s.top()], height[i]) - height[index];
+                    int w = i - s.top() - 1;
+                    res += h * w;
+                }
             }
+            s.push(i);
         }
         return res;
     }
