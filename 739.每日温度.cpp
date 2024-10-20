@@ -8,23 +8,25 @@
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
-        if (temperatures.empty()) return {};
-        stack<int> s;
-        vector<int> res(temperatures.size(), 0);
-        s.push(0);
-        for (int i = 1; i < temperatures.size(); i++) {
-            if (temperatures[i] <= temperatures[s.top()]) {
-                s.push(i);
-            } else {
-                while (!s.empty() && temperatures[i] > temperatures[s.top()]) {
-                    res[s.top()] = i - s.top();
-                    s.pop();
+        vector<int> answer(temperatures.size());
+        int maxT = 0;
+        for (int i = temperatures.size() - 1; i >= 0; i--) {
+            if (maxT > temperatures[i]) {
+                for (int j = i + 1; j < temperatures.size(); j++) {
+                    if (temperatures[j] > temperatures[i]) {
+                        answer[i] = j - i;
+                        break;
+                    } else {
+                        j += answer[j];
+                        j--;
+                    }
                 }
-                s.push(i);
+            } else {
+                answer[i] = 0;
             }
+            if (temperatures[i] > maxT) maxT = temperatures[i];
         }
-        return res;
+        return answer;
     }
 };
 // @lc code=end
-
