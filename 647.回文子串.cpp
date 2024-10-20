@@ -11,20 +11,25 @@ public:
         if (s.empty()) {
             return 0;
         }
-        vector<vector<bool>> dp(s.size(), vector<bool>(s.size(), false));
-        int res = 0;
-        for (int i = s.size() - 1; i >= 0; i--) {
-            for (int j = i; j < s.size(); j++) {
-                if (s[i] == s[j]) {
-                    if (j - i <= 1) {
-                        res++;
-                        dp[i][j] = true;
-                    } else if (dp[i + 1][j - 1]) {
-                        res++;
-                        dp[i][j] = true;
-                    }
-                }
+        string t = "^#";
+        for (auto c : s) {
+            t += c;
+            t += '#';
+        }
+        t += '$';
+        int n = t.size();
+        vector<int> p(n, 0);
+        int pos = 0, maxRight = 0, res = 0;
+        for (int i = 1; i < n - 1; i++) {
+            p[i] = i < maxRight ? min(p[2 * pos - i], maxRight - i) : 1;
+            while (t[i + p[i]] == t[i - p[i]]) {
+                p[i]++;
             }
+            if (i + p[i] > maxRight) {
+                maxRight = i + p[i];
+                pos = i;
+            }
+            res += p[i] / 2;
         }
         return res;
     }
