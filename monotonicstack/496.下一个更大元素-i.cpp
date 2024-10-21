@@ -32,15 +32,3 @@ public:
     }
 };
 // @lc code=end
-
-int main() {
-    vector<int> nums1 = {4, 1, 2};
-    vector<int> nums2 = {1, 3, 4, 2};
-    Solution sol;
-    vector<int> res = sol.nextGreaterElement(nums1, nums2);
-    for (int i : res) {
-        cout << i << " ";
-    }
-    cout << endl;
-    return 0;
-}

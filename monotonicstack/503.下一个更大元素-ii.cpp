@@ -25,15 +25,3 @@ public:
     }
 };
 // @lc code=end
-
-// test case
-int main() {
-    vector<int> nums = {1, 2, 1};
-    Solution sol;
-    vector<int> res = sol.nextGreaterElements(nums);
-    for (int i : res) {
-        cout << i << " ";
-    }
-    cout << endl;
-    return 0;
-}
