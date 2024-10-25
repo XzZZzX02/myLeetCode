@@ -8,24 +8,21 @@
 class Solution {
 public:
     int maxTotalReward(vector<int>& rewardValues) {
+        if (rewardValues.empty()) {
+            return 0;
+        }
         sort(rewardValues.begin(), rewardValues.end());
         rewardValues.erase(unique(rewardValues.begin(), rewardValues.end()), rewardValues.end());
-        int n = rewardValues.size();
-        int m = rewardValues.back() * 2;
-        int res = m - 1;
-        vector<bool> dp(m, false);
-        dp[0] = true;
-        for (int i : rewardValues) {
-            for (int j = 1; j < m; j++) {
-                if (0 <= j - i && j - i < i) {
-                    dp[j] = dp[j] || dp[j - i];
-                }
+        bitset<100000> dp{1};
+        for (int v : rewardValues) {
+            int shift = dp.size() - v;
+            dp |= dp << shift >> (shift - v);
+        }
+        for (int i = rewardValues.back() * 2 - 1;; i--) {
+            if (dp.test(i)) {
+                return i;
             }
         }
-        while (!dp[res]) {
-            --res;
-        }
-        return res;
     }
 };
 // @lc code=end
