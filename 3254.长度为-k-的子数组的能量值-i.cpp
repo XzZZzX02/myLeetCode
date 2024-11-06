@@ -10,24 +10,23 @@ public:
     vector<int> resultsArray(vector<int>& nums, int k) {
         int n = nums.size();
         vector<int> res(n - k + 1, -1);
-        int index = 0, l = 0, r = 0;
-        for (int i = l; i < n; i++) {
-            r = i;
-            if (r - l + 1 == k) {
-                res[index++] = test(nums, l, r);
-                l++;
+        int dp[n];
+        dp[0] = 1;
+        for (int i = 1; i < n; i++) {
+            if (nums[i] - nums[i - 1] == 1) {
+                dp[i] = dp[i - 1] + 1;
+            } else {
+                dp[i] = 1;
+            }
+        }
+        for (int i = k - 1; i < n; i++) {
+            if (dp[i] >= k) {
+                res[i - k + 1] = nums[i];
+            } else {
+                res[i - k + 1] = -1;
             }
         }
         return res;
-    }
-
-    int test(vector<int>& v, int start, int end) {
-        for (int i = start; i < end; i++) {
-            if (v[i + 1] - v[i] != 1) {
-                return -1;
-            }
-        }
-        return v[end];
     }
 };
 // @lc code=end
