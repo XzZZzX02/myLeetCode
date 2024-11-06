@@ -6,24 +6,47 @@
 #include "leetcode.h"
 // @lc code=start
 class Solution {
+    class UnionFind {
+    private:
+        vector<int> p, size;
+    
+    public:
+        UnionFind(int n) {
+            p = vector<int>(n);
+            size = vector<int>(n, 1);
+            iota(p.begin(), p.end(), 0);
+        }
+
+        bool unite(int a, int b) {
+            int pa = find(a), pb = find(b);
+            if (pa == pb) {
+                return false;
+            }
+            if (size[pa] > size[pb]) {
+                p[pb] = pa;
+                size[pa] += size[pb];
+            } else {
+                p[pa] = pb;
+                size[pb] += size[pa];
+            }
+            return true;
+        }
+    
+        int find(int x) {
+            if (x != p[x]) {
+                p[x] = find(p[x]);
+            }
+            return p[x];
+        }
+    };
 public:
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        int n = edges.size();
-        vector<int> p(n);
-        iota(p.begin(), p.end(), 0);
-        for (int i = 0; i < n; i++) {
-            int pa = find(edges[i][0] - 1, p);
-            int pb = find(edges[i][1] - 1, p);
-            if (pa == pb) {
+        UnionFind uf(edges.size());
+        for (int i = 0;; i++) {
+            if (!uf.unite(edges[i][0] - 1, edges[i][1] - 1)) {
                 return edges[i];
             }
-            p[pa] = pb;
         }
-        return edges[n - 1];
-    }
-
-    int find(int x, vector<int>& p) {
-        return x == p[x] ? x : p[x] = find(p[x], p);
     }
 };
 // @lc code=end
