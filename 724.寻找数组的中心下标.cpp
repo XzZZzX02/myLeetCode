@@ -8,16 +8,14 @@
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
-        int res;
-        int sum = 0, add =0;
-        for (auto v : nums) {
-            sum += v;
-        }
+        int l = 0, r = accumulate(nums.begin(), nums.end(), 0);
         for (int i = 0; i < nums.size(); i++) {
-            if (add * 2 == sum - nums[i]) {
+            r -= nums[i];
+            if (l == r) {
                 return i;
+            } else {
+                l += nums[i];
             }
-            add += nums[i];    
         }
         return -1;
     }
