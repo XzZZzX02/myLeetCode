@@ -8,19 +8,27 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        unordered_map<int, int> count;
-        int m = INT_MIN;
-        for (auto v : nums) {
-            m = max(m, v);
-            ++count[v];
+        k = nums.size() - k;
+        return quickSelect(0, nums.size() - 1, k, nums);
+    }
+
+    int quickSelect(int l, int r, int k, vector<int>& nums) {
+        if (l == r) {
+            return nums[l];
         }
-        for (int i = m; ; --i) {
-            k -= count[i];
-            if (k <= 0) {
-                return i;
+        int i = l - 1, j = r + 1, x = nums[(l + r) >> 1];
+        while (i < j) {
+            while (nums[++i] < x);
+            while (nums[--j] > x);
+            if (i < j) {
+                swap(nums[i], nums[j]);
             }
         }
-        return 0;
+        if (j < k) {
+            return quickSelect(j + 1, r, k, nums);
+        } else {
+            return quickSelect(l, j, k, nums);
+        }
     }
 };
 // @lc code=end
