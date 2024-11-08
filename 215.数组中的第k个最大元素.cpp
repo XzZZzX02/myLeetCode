@@ -8,8 +8,19 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        std::sort(nums.begin(), nums.end(), std::greater<int>());
-        return nums[k - 1];
+        unordered_map<int, int> count;
+        int m = INT_MIN;
+        for (auto v : nums) {
+            m = max(m, v);
+            ++count[v];
+        }
+        for (int i = m; ; --i) {
+            k -= count[i];
+            if (k <= 0) {
+                return i;
+            }
+        }
+        return 0;
     }
 };
 // @lc code=end
