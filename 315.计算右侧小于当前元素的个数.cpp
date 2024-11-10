@@ -6,34 +6,6 @@
 #include "leetcode.h"
 // @lc code=start
 class Solution {
-    class BinaryIndexedTree {
-        vector<int> tree;
-        int n;
-    
-    public:
-        BinaryIndexedTree(int _n) : n(_n), tree(_n + 1) {}
-
-        void update(int x, int delta) {
-            while (x <= n) {
-                tree[x] += delta;
-                x += lowbit(x);
-            }
-        }
-
-        int query(int x) {
-            int sum = 0;
-            while (x) {
-                sum += tree[x];
-                x -= lowbit(x);
-            }
-            return sum;
-        }
-
-        int lowbit(int x) {
-            return x & -x;
-        }
-    };
-
 public:
     vector<int> countSmaller(vector<int>& nums) {
         unordered_set<int> s(nums.begin(), nums.end());
