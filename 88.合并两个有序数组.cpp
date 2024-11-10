@@ -8,20 +8,17 @@
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        int l = 0, r = 0;
-        int m_new = m;
-        while (l < m_new && r < n) {
-            if (nums1[l] <= nums2[r]) {
-                l++;
+        int i = m - 1, j = n - 1, k = m + n - 1;
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k--] = nums1[i--];
             } else {
-                nums1.insert(nums1.begin() + l, nums2[r++]);
-                m_new++;
+                nums1[k--] = nums2[j--];
             }
         }
-        while (r < n) {
-            nums1.insert(nums1.begin() + l++, nums2[r++]);
+        while (j >= 0) {
+            nums1[k--] = nums2[j--];
         }
-        nums1.resize(m + n);
     }
 };
 // @lc code=end
