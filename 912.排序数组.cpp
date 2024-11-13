@@ -3,6 +3,8 @@
  *
  * [912] 排序数组
  */
+#include <algorithm>
+#include <vector>
 #include "leetcode.h"
 // @lc code=start
 class Solution {
@@ -21,6 +23,35 @@ class Solution {
         }
     }
 
+    void insertionSort(vector<int>& v) {
+        for (int i = 1; i < v.size(); i++) {
+            int key = v[i];
+            int j = i - 1;
+            while (j >= 0 && v[j] > key) {
+                v[j + 1] = v[j];
+                j--;
+            }
+            v[j + 1] = key;
+        }
+    }
+
+    void bucketSort(vector<int>& v, int bucketSize = 5) {
+        int min = *min_element(v.begin(), v.end());
+        int max = *max_element(v.begin(), v.end());
+        int bucketCount = (max - min) / bucketSize + 1;
+        vector<vector<int>> buckets(bucketCount);
+        for (auto& x : v) {
+            buckets[(x - min) / bucketSize].push_back(x);
+        }
+        v.clear();
+        for (auto& bucket : buckets) {
+            insertionSort(bucket);
+            for (auto& x : bucket) {
+                v.push_back(x);
+            }
+        }
+    }
+
 public:
     vector<int> sortArray(vector<int>& nums) {
         int min = 100;
@@ -33,7 +64,7 @@ public:
                 max = nums[i];
             }
         }
-        countingsort(nums, max, min);
+        bucketSort(nums);
         return nums;
     }
 };
