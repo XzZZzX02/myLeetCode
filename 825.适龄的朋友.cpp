@@ -12,7 +12,6 @@ public:
     int numFriendRequests(vector<int>& ages) {
         int res = 0;
         sort(ages.begin(), ages.end());
-        
         for (int k = 0, i = 0, j = 0; k < ages.size(); k++) {
             while (i < k && !check(ages[i], ages[k])) {
                 i++;
