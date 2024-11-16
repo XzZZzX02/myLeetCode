@@ -3,27 +3,32 @@
  *
  * [825] 适龄的朋友
  */
-#include <algorithm>
-
 #include "leetcode.h"
 // @lc code=start
 class Solution {
 public:
     int numFriendRequests(vector<int>& ages) {
         int res = 0;
-        sort(ages.begin(), ages.end());
-        for (int k = 0, i = 0, j = 0; k < ages.size(); k++) {
-            while (i < k && !check(ages[i], ages[k])) {
-                i++;
+        vector<int> nums(130, 0);
+        for (auto& a : ages) {
+            nums[a]++;
+        }
+        for (int i = 1; i < 130; i++) {
+            nums[i] += nums[i - 1];
+        }
+        for (int y = 1, x = 1; y < 130; y++) {
+            if (!(nums[y] - nums[y - 1])) {
+                continue;
             }
-            if (j < k) {
-                j = k;
+            if (x < y) {
+                x = y;
             }
-            while (j < ages.size() && check(ages[j], ages[k])) {
-                j++;
+            while (x < 130 && check(x, y)) {
+                x++;
             }
-            if (j > i) {
-                res += j - i - 1;
+            int temp = nums[x - 1] - nums[y - 1] - 1;
+            if (temp > 0) {
+                res += temp * (nums[y] - nums[y - 1]);
             }
         }
         return res;
