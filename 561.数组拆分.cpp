@@ -9,22 +9,22 @@ class Solution {
 public:
     int arrayPairSum(vector<int>& nums) {
         int res = 0;
-        int minNum = *min_element(nums.begin(), nums.end());
-        int maxNum = *max_element(nums.begin(), nums.end());
-        vector<int> count(maxNum - minNum + 1, 0);
+        int minNum = INT_MAX, maxNum = INT_MIN;
+        int dp[20001] = {0};
         for (auto& num : nums) {
-            count[num - minNum]++;
+            dp[num + 10000]++;
+            minNum = min(minNum, num + 10000);
+            maxNum = max(maxNum, num + 10000);
         }
-        for (int i = 0; i < maxNum - minNum; i++) {
-            count[i + 1] += count[i];
-        }
-        vector<int> sortedNums(nums.size());
-        for (int i = nums.size() - 1; i >= 0; i--) {
-            sortedNums[count[nums[i] - minNum] - 1] = nums[i];
-            count[nums[i] - minNum]--;
-        }
-        for (int i = 0; i <= nums.size() - 2; i += 2) {
-            res += min(sortedNums[i], sortedNums[i + 1]);
+        int j = 2;
+        for (int i = minNum; i <= maxNum; i++) {
+            while (dp[i]) {
+                if (!(j % 2)) {
+                    res += i - 10000;
+                }
+                dp[i]--;
+                j++;
+            }
         }
         return res;
     }
