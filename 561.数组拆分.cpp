@@ -1,0 +1,19 @@
+/*
+ * @lc app=leetcode.cn id=561 lang=cpp
+ *
+ * [561] 数组拆分
+ */
+#include "leetcode.h"
+// @lc code=start
+class Solution {
+public:
+    int arrayPairSum(vector<int>& nums) {
+        int res = 0;
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i <= nums.size() - 2; i += 2) {
+            res += min(nums[i], nums[i + 1]);
+        }
+        return res;
+    }
+};
+// @lc code=end
