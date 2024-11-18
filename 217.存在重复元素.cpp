@@ -8,14 +8,8 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        unordered_map<int, int> umap{};
-        for (auto& num : nums) {
-            if (umap[num]) {
-                return true;
-            }
-            umap[num]++;
-        }
-        return false;
+        unordered_set<int> set(nums.begin(), nums.end());
+        return set.size() != nums.size();
     }
 };
 // @lc code=end
