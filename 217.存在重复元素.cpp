@@ -8,11 +8,12 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] == nums[i - 1]) {
+        unordered_map<int, int> umap{};
+        for (auto& num : nums) {
+            if (umap[num]) {
                 return true;
             }
+            umap[num]++;
         }
         return false;
     }
