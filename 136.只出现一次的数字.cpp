@@ -8,16 +8,11 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        unordered_map<int, int> umap{};
+        int k = 0;
         for (auto& num : nums) {
-            umap[num]++;
+            k ^= num;
         }
-        for (auto& [key, value] : umap) {
-            if (value == 1) {
-                return key;
-            }
-        }
-        return -1;
+        return k;
     }
 };
 // @lc code=end
