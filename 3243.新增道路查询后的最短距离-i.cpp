@@ -9,34 +9,23 @@ class Solution {
 public:
     vector<int> shortestDistanceAfterQueries(int n,
                                              vector<vector<int>>& queries) {
-        vector<int> res;
-        vector<vector<int>> city(n, vector<int>());
-        for (int i = 0; i < n - 1; i++) {
-            city[i].push_back(i + 1);
-        }
-        auto bfs = [&](int i) {
-            queue<int> que{{i}};
-            vector<int> visited(n, 0);
-            visited[i] = 1;
-            for (int d = 0;; d++) {
-                for (int k = que.size(); k > 0; k--) {
-                    int j = que.front();
-                    que.pop();
-                    if (j == n - 1) {
-                        return d;
-                    }
-                    for (auto& k : city[j]) {
-                        if (!visited[k]) {
-                            visited[k] = 1;
-                            que.push(k);
-                        }
+        vector<int> res(queries.size());
+        vector<vector<int>> from(n);
+        vector<int> f(n);
+        iota(f.begin(), f.end(), 0);
+        for (int qi = 0; qi < queries.size(); qi++) {
+            int l = queries[qi][0], r = queries[qi][1];
+            from[r].push_back(l);
+            if (f[l] + 1 < f[r]) {
+                f[r] = f[l] + 1;
+                for (int i = r + 1; i < n; i++) {
+                    f[i] = min(f[i], f[i - 1] + 1);
+                    for (int j : from[i]) {
+                        f[i] = min(f[i], f[j] + 1);
                     }
                 }
             }
-        };
-        for (auto& q : queries) {
-            city[q[0]].push_back(q[1]);
-            res.push_back(bfs(0));
+            res[qi] = f[n - 1];
         }
         return res;
     }
