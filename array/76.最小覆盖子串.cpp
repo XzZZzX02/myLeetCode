@@ -36,13 +36,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string s1 = "s";
-    string t1 = "ss";
-    string res = s.minWindow(s1, t1);
-    cout << res << endl;
-    return 0;
-}
-#endif

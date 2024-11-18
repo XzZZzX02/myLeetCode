@@ -44,12 +44,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string str = "F R  I   E    N     D      S      ";
-    string res = s.reverseWords(str);
-    cout << res << endl;
-    return 0;
-}
-#endif

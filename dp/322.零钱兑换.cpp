@@ -3,8 +3,6 @@
  *
  * [322] 零钱兑换
  */
-#include <climits>
-
 #include "leetcode.h"
 // @lc code=start
 class Solution {
@@ -23,13 +21,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> coins = {2};
-    int amount = 3;
-    int res = s.coinChange(coins, amount);
-    cout << res << endl;
-    return 0;
-}
-#endif

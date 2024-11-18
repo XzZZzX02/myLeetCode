@@ -43,13 +43,3 @@ public:
     int strStr(string haystack, string needle) { return kmp(haystack, needle); }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string haystack = "hello";
-    string needle = "ll";
-    int res = s.strStr(haystack, needle);
-    cout << res << endl;
-    return 0;
-}
-#endif

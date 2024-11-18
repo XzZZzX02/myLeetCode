@@ -36,12 +36,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string path = "/a//b////c/d//././/..";
-    string res = s.simplifyPath(path);
-    cout << res << endl;
-    return 0;
-}
-#endif

@@ -24,12 +24,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    int n = 3;
-    int res = s.climbStairs(n);
-    cout << res << endl;
-    return 0;
-}
-#endif

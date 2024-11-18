@@ -3,8 +3,6 @@
  *
  * [121] 买卖股票的最佳时机
  */
-#include <climits>
-
 #include "leetcode.h"
 // @lc code=start
 class Solution {
@@ -20,12 +18,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> prices = {1, 2};
-    int res = s.maxProfit(prices);
-    cout << res << endl;
-    return 0;
-}
-#endif

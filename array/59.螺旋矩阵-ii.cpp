@@ -47,17 +47,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<vector<int>> res;
-    res = s.generateMatrix(2);
-    for (auto i : res) {
-        for (auto j : i) {
-            cout << j << " ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
-#endif

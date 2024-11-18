@@ -26,13 +26,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-#include "leetcode.h"
-int main() {
-    Solution s;
-    int num = 808201;
-    bool res = s.isPerfectSquare(num);
-    cout << res << endl;
-    return 0;
-}
-#endif

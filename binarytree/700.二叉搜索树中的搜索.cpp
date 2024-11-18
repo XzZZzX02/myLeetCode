@@ -33,15 +33,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    TreeNode* root =
-        new TreeNode(4, new TreeNode(2, new TreeNode(1), new TreeNode(3)),
-                     new TreeNode(7, new TreeNode(6), new TreeNode(9)));
-    int val = 2;
-    TreeNode* res = s.searchBST(root, val);
-    cout << res << endl;
-    return 0;
-}
-#endif

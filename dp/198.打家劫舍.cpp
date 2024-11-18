@@ -21,12 +21,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {0};
-    int res = s.rob(nums);
-    cout << res << endl;
-    return 0;
-}
-#endif

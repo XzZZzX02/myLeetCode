@@ -47,17 +47,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    ListNode* head =
-        new ListNode(7, new ListNode(7, new ListNode(7, new ListNode(7))));
-    ListNode* res = s.removeElements(head, 7);
-    while (res) {
-        cout << res->val << " ";
-        res = res->next;
-    }
-    cout << res << endl;
-    return 0;
-}
-#endif

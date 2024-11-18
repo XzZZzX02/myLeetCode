@@ -33,17 +33,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {1, 2, 3};
-    vector<vector<int>> res = s.permute(nums);
-    for (auto v : res) {
-        for (auto i : v) {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
-#endif

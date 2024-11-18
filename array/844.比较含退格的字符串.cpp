@@ -49,13 +49,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string s1 = "a#c";
-    string s2 = "b";
-    bool res = s.backspaceCompare(s1, s2);
-    cout << res << endl;
-    return 0;
-}
-#endif

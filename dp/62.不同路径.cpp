@@ -19,12 +19,3 @@ public:
     int uniquePaths(int m, int n) { return dfs(m, n, 1, 1); }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    int m = 3, n = 7;
-    int res = s.uniquePaths(3, 7);
-    cout << res << endl;
-    return 0;
-}
-#endif

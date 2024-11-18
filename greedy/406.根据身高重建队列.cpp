@@ -28,18 +28,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<vector<int>> people = {{6, 0}, {5, 0}, {4, 0},
-                                  {3, 2}, {2, 2}, {1, 4}};
-    vector<vector<int>> res = s.reconstructQueue(people);
-    for (auto v : res) {
-        for (auto i : v) {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
-#endif

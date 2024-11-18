@@ -3,8 +3,6 @@
  *
  * [377] 组合总和 Ⅳ
  */
-#include <climits>
-
 #include "leetcode.h"
 // @lc code=start
 class Solution {
@@ -23,13 +21,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {1, 2, 3};
-    int target = 4;
-    int res = s.combinationSum4(nums, target);
-    cout << res << endl;
-    return 0;
-}
-#endif

@@ -55,14 +55,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string str = "25525511135";
-    vector<string> res = s.restoreIpAddresses(str);
-    for (auto str : res) {
-        cout << str << endl;
-    }
-    return 0;
-}
-#endif

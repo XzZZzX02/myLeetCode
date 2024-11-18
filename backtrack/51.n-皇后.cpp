@@ -48,17 +48,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    int n = 4;
-    vector<vector<string>> res = s.solveNQueens(n);
-    for (auto v : res) {
-        for (auto s : v) {
-            cout << s << endl;
-        }
-        cout << "=================" << endl;
-    }
-    return 0;
-}
-#endif

@@ -36,15 +36,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {1, 1, 1, 2, 2, 3};
-    int k = 2;
-    vector<int> res = s.topKFrequent(nums, k);
-    for (int num : res) {
-        cout << num << " ";
-    }
-    return 0;
-}
-#endif

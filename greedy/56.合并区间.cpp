@@ -35,17 +35,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<vector<int>> intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
-    vector<vector<int>> res = s.merge(intervals);
-    for (auto v : res) {
-        for (auto i : v) {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
-#endif

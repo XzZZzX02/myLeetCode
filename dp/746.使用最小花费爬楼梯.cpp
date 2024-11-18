@@ -21,12 +21,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> cost = {10, 15, 20};
-    int res = s.minCostClimbingStairs(cost);
-    cout << res << endl;
-    return 0;
-}
-#endif

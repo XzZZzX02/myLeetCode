@@ -5,6 +5,7 @@
  */
 #include <algorithm>
 #include <vector>
+
 #include "leetcode.h"
 // @lc code=start
 class Solution {
@@ -69,10 +70,3 @@ public:
     }
 };
 // @lc code=end
-
-int main() {
-    Solution sol;
-    vector<int> nums = {5, 2, 3, 1};
-    vector<int> res = sol.sortArray(nums);
-    return 0;
-}

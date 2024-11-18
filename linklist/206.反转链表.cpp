@@ -37,16 +37,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    ListNode* head = new ListNode(
-        1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-    ListNode* res = s.reverseList(head);
-    while (res) {
-        cout << res->val << " ";
-        cout << res << endl;
-        return 0;
-    }
-}
-#endif

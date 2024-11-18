@@ -28,13 +28,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<vector<int>> points = {{1, 9},  {7, 16}, {2, 5}, {7, 12}, {9, 11},
-                                  {2, 10}, {9, 16}, {3, 9}, {1, 3}};
-    int res = s.findMinArrowShots(points);
-    cout << res << endl;
-    return 0;
-}
-#endif

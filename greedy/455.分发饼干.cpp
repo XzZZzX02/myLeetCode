@@ -25,13 +25,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> g = {1, 2, 3};
-    vector<int> si = {3};
-    int res = s.findContentChildren(g, si);
-    cout << res << endl;
-    return 0;
-}
-#endif

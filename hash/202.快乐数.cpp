@@ -26,12 +26,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    int n = 2;
-    bool res = s.isHappy(n);
-    cout << res << endl;
-    return 0;
-}
-#endif

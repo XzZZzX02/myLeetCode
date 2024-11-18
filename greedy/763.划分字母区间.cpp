@@ -28,14 +28,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string str = "ababcbacadefegdehijhklij";
-    vector<int> res = s.partitionLabels(str);
-    for (auto i : res) {
-        cout << i << " " << endl;
-    }
-    return 0;
-}
-#endif

@@ -32,12 +32,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<vector<int>> obs = {{0, 0}, {1, 1}, {0, 0}};
-    int res = s.uniquePathsWithObstacles(obs);
-    cout << res << endl;
-    return 0;
-}
-#endif

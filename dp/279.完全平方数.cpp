@@ -33,12 +33,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    int n = 12;
-    int res = s.numSquares(n);
-    cout << res << endl;
-    return 0;
-}
-#endif

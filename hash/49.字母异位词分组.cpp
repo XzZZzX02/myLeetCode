@@ -24,17 +24,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
-    vector<vector<string>> res = s.groupAnagrams(strs);
-    for (auto& v : res) {
-        for (auto& s : v) {
-            cout << s << " ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
-#endif

@@ -38,17 +38,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {3, 3, 0, 3};
-    vector<vector<int>> res = s.permuteUnique(nums);
-    for (auto v : res) {
-        for (auto i : v) {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
-#endif

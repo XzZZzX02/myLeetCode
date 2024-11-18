@@ -47,18 +47,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    TreeNode *root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(2);
-    root->left->left = new TreeNode();
-    root->left->right = new TreeNode(3);
-    root->right->left = new TreeNode();
-    root->right->right = new TreeNode(3);
-    bool res = s.isSymmetric(root);
-    cout << res << endl;
-    return 0;
-}
-#endif

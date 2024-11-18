@@ -3,8 +3,6 @@
  *
  * [438] 找到字符串中所有字母异位词
  */
-#include <cstring>
-
 #include "leetcode.h"
 // @lc code=start
 class Solution {
@@ -35,15 +33,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string s1 = "aa";
-    string p1 = "bb";
-    vector<int> res = s.findAnagrams(s1, p1);
-    for (int i : res) {
-        cout << i << " ";
-    }
-    return 0;
-}
-#endif

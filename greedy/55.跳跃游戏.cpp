@@ -22,12 +22,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {3, 2, 1, 0, 4};
-    bool res = s.canJump(nums);
-    cout << res << endl;
-    return 0;
-}
-#endif

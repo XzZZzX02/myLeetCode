@@ -28,12 +28,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    string str = "abac";
-    bool res = s.repeatedSubstringPattern(str);
-    cout << res << endl;
-    return 0;
-}
-#endif

@@ -37,12 +37,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> bills = {5, 5, 5, 5, 10, 5, 10, 10, 10, 20};
-    bool res = s.lemonadeChange(bills);
-    cout << res << endl;
-    return 0;
-}
-#endif

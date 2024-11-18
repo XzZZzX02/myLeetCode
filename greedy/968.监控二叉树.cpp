@@ -47,13 +47,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    TreeNode* root = new TreeNode(0);
-    root->left = new TreeNode(0, new TreeNode(0), new TreeNode(0));
-    int res = s.minCameraCover(root);
-    cout << res << endl;
-    return 0;
-}
-#endif

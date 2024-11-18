@@ -78,13 +78,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    TreeNode* root = new TreeNode(12);
-    TreeNode* subRoot = new TreeNode(2);
-    bool res = s.isSubtree(root, subRoot);
-    cout << res << endl;
-    return 0;
-}
-#endif

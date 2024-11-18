@@ -29,14 +29,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {-4, -1, 0, 3, 10};
-    vector<int> res = s.sortedSquares(nums);
-    for (int n : res) {
-        cout << n << " ";
-    }
-    return 0;
-}
-#endif

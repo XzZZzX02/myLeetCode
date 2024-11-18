@@ -30,12 +30,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> fruits = {3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4};
-    int res = s.totalFruit(fruits);
-    cout << res << endl;
-    return 0;
-}
-#endif

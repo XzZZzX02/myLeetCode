@@ -18,15 +18,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {3, 2, 2, 3};
-    int val = 3;
-    int res = s.removeElement(nums, val);
-    for (int i = 0; i < res; i++) {
-        cout << nums[i] << " ";
-    }
-    return 0;
-}
-#endif

@@ -3,8 +3,6 @@
  *
  * [538] 把二叉搜索树转换为累加树
  */
-#include <iostream>
-
 #include "leetcode.h"
 // @lc code=start
 /**
@@ -32,14 +30,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    TreeNode* root =
-        new TreeNode(4, new TreeNode(1, new TreeNode(0), new TreeNode(2)),
-                     new TreeNode(6, new TreeNode(5), new TreeNode(7)));
-    TreeNode* res = s.convertBST(root);
-    cout << res << endl;
-    return 0;
-}
-#endif

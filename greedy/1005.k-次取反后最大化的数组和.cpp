@@ -26,12 +26,3 @@ public:
     }
 };
 // @lc code=end
-#ifndef __ONLINE_JUDGE__
-int main() {
-    Solution s;
-    vector<int> nums = {3, -3, 5, 6, 9};
-    int res = s.largestSumAfterKNegations(nums, 2);
-    cout << res << endl;
-    return 0;
-}
-#endif
