@@ -5,25 +5,26 @@
  */
 #include "leetcode.h"
 // @lc code=start
+const int m = 31622;
+int primes[m + 1];
+auto init = [] {
+    for (int i = 2; i <= m; i++) {
+        if (primes[i] == 0) {
+            primes[i] = primes[i - 1] + 1;
+            for (int j = i * i; j <= m; j += i) {
+                primes[j] = -1;
+            }
+        } else {
+            primes[i] = primes[i - 1];
+        }
+    }
+    return 0;
+}();
+
 class Solution {
 public:
     int nonSpecialCount(int l, int r) {
-        int res = r - l + 1;
-        auto isSpecial = [&](int n) -> bool {
-            vector<int> factors;
-            for (int i = 1; i < n; i++) {
-                if (n % i == 0) {
-                    factors.push_back(i);
-                }
-            }
-            return factors.size() == 2;
-        };
-        for (int i = l; i <= r; i++) {
-            if (isSpecial(i)) {
-                res--;
-            }
-        }
-        return res;
+        return r - l + 1 - (primes[(int)sqrt(r)] - primes[(int)sqrt(l - 1)]);
     }
 };
 // @lc code=end
